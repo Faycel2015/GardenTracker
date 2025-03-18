@@ -45,9 +45,9 @@ GardenTracker is an intuitive and comprehensive iOS app built with **SwiftUI** a
 GardenTracker/
 ├── App/
 ├── Models/
-├── ViewModels/
-├── Views/
+├── Resources/
 ├── Services/
-├── Extensions/
-├── WidgetsExtension/
-└── WatchApp/
+├── Utilities/
+├── Views/
+├── Info
+└── Item
