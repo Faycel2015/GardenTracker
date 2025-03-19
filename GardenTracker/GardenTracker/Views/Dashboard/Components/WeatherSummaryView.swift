@@ -12,7 +12,7 @@ import MapKit
 
 struct WeatherSummaryView: View {
     let weatherData: WeatherData
-    
+    windSpeed
     var body: some View {
         VStack(alignment: .leading) {
             Text("Today's Weather")
@@ -26,9 +26,13 @@ struct WeatherSummaryView: View {
                             .font(.system(size: 40))
                             .foregroundColor(AppColors.info)
                         
-                        Text("\(Int(weatherData.temperature))°F")
+                        Text(weatherService.getTemperatureInPreferredUnit(temperatureInCelsius: weatherData.temperature))
                             .font(.system(size: 32, weight: .medium))
                             .foregroundColor(AppColors.textPrimary)
+
+//                        Text("\(Int(weatherData.temperature))°F")
+//                            .font(.system(size: 32, weight: .medium))
+//                            .foregroundColor(AppColors.textPrimary)
                     }
                     
                     Text(weatherData.conditions)
@@ -39,9 +43,11 @@ struct WeatherSummaryView: View {
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    LabeledContent("Precipitation", value: "\(Int(weatherData.precipitation * 100))%")
+                    LabeledContent("Precipitation", value: weatherService.getLocalizedPrecipitation(precipitationInMm: weatherData.precipitation * 100))
+//                    LabeledContent("Precipitation", value: "\(Int(weatherData.precipitation * 100))%")
                     LabeledContent("Humidity", value: "\(Int(weatherData.humidity))%")
-                    LabeledContent("Wind", value: "\(Int(weatherData.windSpeed)) mph")
+//                    LabeledContent("Wind", value: "\(Int(weatherData.windSpeed)) mph")
+                    LabeledContent("Wind", value: weatherService.getLocalizedWindSpeed(windSpeedInKmh: weatherData.windSpeed))
                 }
                 .font(.caption)
             }

@@ -185,6 +185,35 @@ class WeatherService {
         )
     }
     
+    /// Method to determine the temperature unit
+    func getTemperatureInPreferredUnit(temperatureInCelsius: Double) -> String {
+        let preferredUnit = Locale.current.measurementSystem == .metric ? "C" : "F"
+        if preferredUnit == "C" {
+            return String(format: "%.1f°C", temperatureInCelsius)
+        } else {
+            let fahrenheit = temperatureInCelsius * 9 / 5 + 32
+            return String(format: "%.1f°F", fahrenheit)
+        }
+    }
+    
+    func getLocalizedWindSpeed(windSpeedInKmh: Double) -> String {
+        if Locale.current.measurementSystem == .metric {
+            return String(format: "%.1f km/h", windSpeedInKmh)
+        } else {
+            let windSpeedInMph = windSpeedInKmh * 0.621371
+            return String(format: "%.1f mph", windSpeedInMph)
+        }
+    }
+
+    func getLocalizedPrecipitation(precipitationInMm: Double) -> String {
+        if Locale.current.measurementSystem == .metric {
+            return String(format: "%.1f mm", precipitationInMm)
+        } else {
+            let precipitationInInches = precipitationInMm * 0.0393701
+            return String(format: "%.1f in", precipitationInInches)
+        }
+    }
+    
     // MARK: - Mock Data
     
     /// Generate mock current weather data for testing

@@ -127,12 +127,12 @@ struct WeatherView: View {
             }
             
             VStack(alignment: .leading, spacing: 12) {
-                Text("\(Int(currentWeather.temperature))°F")
+                Text(weatherService.getTemperatureInPreferredUnit(temperatureInCelsius: currentWeather.temperature))
                     .font(.system(size: 42, weight: .medium))
                 
                 WeatherDetailRow(icon: "drop.fill", value: "\(Int(currentWeather.humidity))%", label: "Humidity")
                 
-                WeatherDetailRow(icon: "wind", value: "\(Int(currentWeather.windSpeed)) mph", label: "Wind")
+                WeatherDetailRow(icon: "wind", value: "\(Int(currentWeather.windSpeed)) \(Locale.current.measurementSystem == .metric ? "km/h" : "mph")", label: "Wind")
                 
                 WeatherDetailRow(icon: "umbrella.fill", value: "\(Int(currentWeather.precipitation * 100))%", label: "Precipitation")
             }
@@ -179,7 +179,7 @@ struct WeatherView: View {
             
             Spacer()
             
-            Text("\(Int(forecast.temperature))°F")
+            Text(weatherService.getTemperatureInPreferredUnit(temperatureInCelsius: forecast.temperature))
                 .fontWeight(.medium)
         }
         .padding(.vertical, 12)
