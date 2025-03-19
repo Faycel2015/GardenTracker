@@ -101,7 +101,7 @@ Specialized services provide key functionality:
 ### Installation
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/GardenTracker.git
+   git clone https://github.com/Faycel2015/GardenTracker.git
 
 	2	Open GardenTracker.xcodeproj in Xcode
 	3	Build and run on your device or simulator
