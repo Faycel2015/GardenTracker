@@ -102,3 +102,19 @@ Specialized services provide key functionality:
 1. Clone the repository
    ```bash
    git clone https://github.com/yourusername/GardenTracker.git
+
+	2	Open GardenTracker.xcodeproj in Xcode
+	3	Build and run on your device or simulator
+Future Enhancements
+Planned features for future releases:
+	•	Garden layout sharing and export capabilities
+	•	Plant disease identification using Vision framework
+	•	Integration with smart garden sensors
+	•	Expanded plant database with search and filtering
+	•	Community features for sharing gardening tips and harvests
+	•	Multiple garden location support with different climate zones
+	•	Extended statistical reporting on garden performance
+Contributors
+Built with passion by garden enthusiasts who code!
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
