@@ -12,12 +12,11 @@ import MapKit
 
 struct WeatherSummaryView: View {
     let weatherData: WeatherData
-    windSpeed
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Today's Weather")
                 .headlineStyle()
-//                .foregroundColor(AppColors.textPrimary)
             
             HStack(spacing: 20) {
                 VStack(alignment: .leading) {
@@ -26,13 +25,10 @@ struct WeatherSummaryView: View {
                             .font(.system(size: 40))
                             .foregroundColor(AppColors.info)
                         
-                        Text(weatherService.getTemperatureInPreferredUnit(temperatureInCelsius: weatherData.temperature))
+                        // Use the method from WeatherService.shared
+                        Text(WeatherService.shared.getTemperatureInPreferredUnit(temperatureInFahrenheit: weatherData.temperature))
                             .font(.system(size: 32, weight: .medium))
                             .foregroundColor(AppColors.textPrimary)
-
-//                        Text("\(Int(weatherData.temperature))°F")
-//                            .font(.system(size: 32, weight: .medium))
-//                            .foregroundColor(AppColors.textPrimary)
                     }
                     
                     Text(weatherData.conditions)
@@ -43,11 +39,9 @@ struct WeatherSummaryView: View {
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    LabeledContent("Precipitation", value: weatherService.getLocalizedPrecipitation(precipitationInMm: weatherData.precipitation * 100))
-//                    LabeledContent("Precipitation", value: "\(Int(weatherData.precipitation * 100))%")
+                    LabeledContent("Precipitation", value: WeatherService.shared.getLocalizedPrecipitation(precipitationInMm: weatherData.precipitation * 100))
                     LabeledContent("Humidity", value: "\(Int(weatherData.humidity))%")
-//                    LabeledContent("Wind", value: "\(Int(weatherData.windSpeed)) mph")
-                    LabeledContent("Wind", value: weatherService.getLocalizedWindSpeed(windSpeedInKmh: weatherData.windSpeed))
+                    LabeledContent("Wind", value: WeatherService.shared.getLocalizedWindSpeed(windSpeedInKmh: weatherData.windSpeed))
                 }
                 .font(.caption)
             }
@@ -57,11 +51,7 @@ struct WeatherSummaryView: View {
                     .padding(.top, 8)
             }
         }
-//        .padding()
         .cardStyle()
-//        .background(Color(.systemBackground))
-//        .clipShape(RoundedRectangle(cornerRadius: 12))
-//        .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
     }
     
     private var weatherIconName: String {
@@ -113,7 +103,6 @@ struct WeatherSummaryPlaceholder: View {
         .shadow(radius: 2)
     }
 }
-
 
 #Preview {
     WeatherSummaryView(
